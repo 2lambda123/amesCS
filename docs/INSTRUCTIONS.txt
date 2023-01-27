@@ -1,0 +1,44 @@
+#====================================================
+#==INSTALL environment for Ames Climate Simulator===
+#====================================================
+
+python3 -m venv --system-site-packages amesCS-env
+source amesCS-env/bin/activate
+pip install dash
+pip install git+https://github.com/alex-kling/amesgcm.git@master-dev
+deactivate
+
+#==========================================
+#==================Get code================
+#==========================================
+
+git clone https://github.com/alex-kling/amesCS.git
+
+
+#==========================================
+#=====START Ames Climate Simulator=========
+#==========================================
+
+source amesCS-env/bin/activate
+cd amesCS/amesCS/
+python app.py
+
+Should display:
+Dash is running on http://127.0.0.1:8050/
+...
+
+Go to webbrowser (Chrome, Safari etc...) and enter following in URL:
+
+
+http://127.0.0.1:8050/
+
+
+#==========================================
+#=============(TROUBLESHOOTING)============
+#==========================================
+I ran into this particular error on python 3.7
+ImportError: cannot import name 'BaseResponse' from 'werkzeug.wrappers'
+
+That was fix by running the following in the virtual environment
+
+pip install Werkzeug==2.0.3

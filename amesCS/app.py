@@ -8,6 +8,8 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 
+from amesgcm.FV3_utils import  areo_avg
+
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -30,8 +32,8 @@ app.layout = html.Div([
         ],
         value='MTL'
     ),
-    
-    
+
+
     html.Label('Variables selection (multi)'),
     dcc.Dropdown(
         options=[
@@ -44,7 +46,7 @@ app.layout = html.Div([
         value=['MTL', 'SF'],
         multi=True
     ),
-    
+
     html.Label('Vertical coordinates'),
     dcc.RadioItems(
         options=[
@@ -83,15 +85,15 @@ app.layout = html.Div([
         marks={i: 'Label {}'.format(i) if i == 1 else str(i) for i in range(0, 360,15)},
         value=5,
     ),
-    
+
 
     dcc.Input(id='my-id', value='Level (Pa)', type="text"),
     html.Button('Submit', id='button'),
     html.Div(id='my-div'),
-    
+
 ], style={'columnCount': 2})
 
 
-     
+
 if __name__ == '__main__':
     app.run_server(debug=True) #This upload the webrowser automatically when changes are made to the code
